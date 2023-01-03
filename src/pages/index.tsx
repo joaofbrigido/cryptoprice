@@ -18,15 +18,6 @@ type cryptosProp = {
   ];
 };
 
-type crypto = {
-  id: string;
-  name: string;
-  symbol: string;
-  image: string;
-  current_price: number;
-  price_change_percentage_24h: number;
-};
-
 export default function Home({ cryptos }: cryptosProp) {
   const [search, setSearch] = useState('');
 
