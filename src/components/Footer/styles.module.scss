@@ -1,0 +1,17 @@
+.footer {
+  text-align: center;
+  font-size: var(--s16);
+  width: 100%;
+  background-color: #131314;
+  padding: 16px 20px;
+//   position: fixed;
+//   bottom: 0;
+
+  a {
+    color: var(--primary-100);
+
+    &:first-child {
+      margin-right: 6px;
+    }
+  }
+}
