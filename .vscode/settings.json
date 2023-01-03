@@ -1,0 +1,18 @@
+{
+  "files.exclude": {
+    "node_modules": true,
+    ".vscode": false,
+    ".gitignore": true,
+    "package.json": false,
+    "package-lock.json": true,
+    "public": false,
+    ".next": true,
+    ".eslintrc.json": true,
+    "README.md": true,
+    "yarn.lock": true,
+    "tsconfig.json": true,
+    "next-env.d.ts": true,
+    "next.config.js": true,
+    ".prettierrc.json": true
+  }
+}
