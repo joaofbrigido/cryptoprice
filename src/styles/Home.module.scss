@@ -1,5 +1,24 @@
 .main {
-    margin-top: 64px;
-    margin-bottom: 96px;
-    padding: 0 20px;
+  margin-top: 64px;
+  margin-bottom: 64px;
+  padding: 0 20px;
+}
+
+.searchWrapp {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 24px;
+
+  span {
+    position: absolute;
+    background-color: var(--primary);
+    padding: 8px 14px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 4px;
+    cursor: pointer;
+  }
 }

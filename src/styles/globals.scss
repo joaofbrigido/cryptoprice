@@ -17,6 +17,7 @@
   // font sizes
   --s8: 0.5rem;
   --s16: 1rem;
+  --s18: 1.125rem;
   --s20: 1.25rem;
   --s24: 1.5rem;
   --s32: 2rem;
@@ -28,6 +29,24 @@ body {
   font-family: 'DM Sans', Helvetica, Arial, sans-serif;
   color: var(--white);
   background-color: var(--bg);
+}
+
+input {
+  font-family: 'DM Sans', Helvetica, Arial, sans-serif;
+  background-color: var(--bg-100);
+  color: var(--white);
+  outline: none;
+  border: none;
+  padding: 10px 16px;
+  width: 100%;
+  border-radius: 24px;
+  font-size: var(--s16);
+  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.16);
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 0 1px var(--primary);
+  }
 }
 
 button {
@@ -46,4 +65,110 @@ ul {
 .mainContainer {
   max-width: 1104px;
   margin: 0 auto;
+}
+
+// Table
+.tableContainer {
+  width: 100%;
+  background-color: var(--bg-100);
+  padding: 24px;
+  border-radius: 32px;
+  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.16);
+  overflow: auto;
+  height: calc(100vh - 318px);
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+      text-align: left;
+      font-size: var(--s18);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 24px;
+      white-space: nowrap;
+
+      & + th {
+        padding-left: 20px;
+      }
+
+      &:nth-child(4) {
+        max-width: 72px;
+      }
+    }
+
+    td {
+      padding-top: 24px;
+
+      & + td {
+        padding-left: 20px;
+      }
+    }
+
+    .coin {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .coinText {
+        span {
+          font-size: 12px;
+          text-transform: uppercase;
+          font-weight: bold;
+          position: relative;
+          bottom: 2px;
+          left: 1px;
+        }
+      }
+    }
+
+    .imgCrypto {
+      background-color: #fbf7ff;
+      padding: 6px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .percentGreen {
+      color: var(--green);
+    }
+    .percentRed {
+      color: var(--red);
+    }
+  }
+}
+
+.tableContainer::-webkit-scrollbar {
+  background-color: var(--bg);
+  border-radius: 3px;
+  height: 0.65rem;
+  width: 0.65rem;
+}
+.tableContainer::-webkit-scrollbar-thumb {
+  background-color: var(--bg-100);
+  border: 2px solid var(--bg);
+  border-radius: 4px;
+}
+
+@media (max-width: 730px) {
+  .tableContainer {
+    table {
+      th:nth-child(4) {
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 490px) {
+  .tableContainer {
+    table {
+      td:nth-child(3),
+      td:nth-child(4) {
+        text-align: center;
+      }
+    }
+  }
 }

@@ -18,7 +18,7 @@ export const Header = () => {
             <li>
               <Link href="/preco-medio">Preço Médio</Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="#" className={S.changeMode}>
                 <Image
                   src="/icons/lightModeIcon.svg"
@@ -28,7 +28,7 @@ export const Header = () => {
                 />
                 Light Mode
               </Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>
