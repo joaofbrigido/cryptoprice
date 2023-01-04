@@ -2,8 +2,6 @@ import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import S from '../styles/Home.module.scss';
 
-// https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd
-
 type cryptosProp = {
   cryptos: [
     {
@@ -107,6 +105,6 @@ export async function getStaticProps() {
     props: {
       cryptos,
     },
-    revalidate: 60 * 60, // 1 hora
+    revalidate: 60 * 30, // 30 min
   };
 }

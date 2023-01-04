@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import S from './styles.module.scss';
-
-// https://api.coingecko.com/api/v3/coins/bitcoin/history?date=05-12-2022&localization=false
 
 type CryptoResponse = {
   id: string;
@@ -40,7 +40,7 @@ const PrecoMedio = () => {
 
   async function handleAddCrypto() {
     if (date === '' || quantity <= 0 || coin === '-1' || coin === '') {
-      alert('Necessário preencher os campos corretamente');
+      toast.warning('Necessário preencher os campos corretamente');
     } else {
       try {
         setLoading(true);
@@ -53,7 +53,7 @@ const PrecoMedio = () => {
           dateTime.getFullYear();
 
         if (dateTime > new Date() || dateTime < new Date('12-31-2015')) {
-          alert('Data Inválida');
+          toast.error('Data Inválida');
         } else {
           const response = await fetch(
             `https://api.coingecko.com/api/v3/coins/${coin}/history?date=${formatDate}&localization=false`
@@ -75,7 +75,7 @@ const PrecoMedio = () => {
 
             setCryptoList([...cryptoList, newRow]);
           } else {
-            alert(crypto.error);
+            toast.error(crypto.error);
           }
         }
       } catch (error) {
@@ -89,6 +89,22 @@ const PrecoMedio = () => {
   function handleDeleteRow(slug: number) {
     const updateList = cryptoList.filter((item) => item.slug !== slug);
     setCryptoList(updateList);
+  }
+
+  function CalculateAveragePrice() {
+    if (cryptoList.length) {
+      let totalQuantity = 0;
+      let totalPrice = 0;
+
+      for (let purchase of cryptoList) {
+        totalQuantity += purchase.quantity;
+        totalPrice += purchase.quantity * purchase.price;
+      }
+
+      return (totalPrice / totalQuantity).toFixed(2);
+    } else {
+      return '';
+    }
   }
 
   return (
@@ -188,7 +204,7 @@ const PrecoMedio = () => {
         Calcular
       </button>
 
-      <p className={S.averagePrice}>Preço Médio: $1231</p>
+      <p className={S.averagePrice}>Preço Médio: ${CalculateAveragePrice()}</p>
     </main>
   );
 };
