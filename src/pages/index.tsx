@@ -3,7 +3,6 @@ import Image from 'next/image';
 import S from '../styles/Home.module.scss';
 
 // https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd
-// https://api.coingecko.com/api/v3/coins/bitcoin/history?date={05-12-2022}&localization=false
 
 type cryptosProp = {
   cryptos: [

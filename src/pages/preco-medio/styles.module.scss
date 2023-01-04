@@ -1,0 +1,78 @@
+.main {
+  margin-top: 64px;
+  margin-bottom: 64px;
+  padding: 0 20px;
+}
+
+.inputsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.inputWrapp {
+  color-scheme: dark;
+
+  label {
+    display: block;
+    margin-bottom: 12px;
+  }
+}
+
+.btn {
+  display: block;
+  background-color: var(--primary);
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-size: var(--s18);
+  font-weight: bold;
+  color: var(--white);
+  grid-column: 1/-1;
+  margin: 12px auto;
+  border: none;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.16);
+  transition: 0.2s ease;
+
+  &:hover {
+    background-color: #5345d5;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.averagePrice {
+  background-color: var(--bg-100);
+  padding: 16px 20px;
+  border-radius: 32px;
+  margin-top: 32px;
+  font-size: var(--s18);
+  font-weight: 500;
+}
+
+.deleteRow {
+  text-align: right;
+
+  span {
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: var(--red);
+  }
+}
+
+@media (max-width: 630px) {
+  .inputsContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 450px) {
+  .inputsContainer {
+    grid-template-columns: 1fr;
+  }
+}

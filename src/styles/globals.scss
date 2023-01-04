@@ -31,7 +31,8 @@ body {
   background-color: var(--bg);
 }
 
-input {
+input,
+select {
   font-family: 'DM Sans', Helvetica, Arial, sans-serif;
   background-color: var(--bg-100);
   color: var(--white);
@@ -81,27 +82,25 @@ ul {
     width: 100%;
     border-collapse: collapse;
 
-    th {
-      text-align: left;
-      font-size: var(--s18);
+    thead {
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 24px;
-      white-space: nowrap;
 
-      & + th {
+      th {
+        text-align: left;
+        font-size: var(--s18);
+        padding-bottom: 12px;
+        white-space: nowrap;
         padding-left: 20px;
-      }
-
-      &:nth-child(4) {
-        max-width: 72px;
       }
     }
 
-    td {
-      padding-top: 24px;
+    tbody {
+      tr:hover {
+        background-color: var(--primary);
+      }
 
-      & + td {
-        padding-left: 20px;
+      td {
+        padding: 10px 20px;
       }
     }
 
@@ -155,19 +154,10 @@ ul {
 @media (max-width: 730px) {
   .tableContainer {
     table {
-      th:nth-child(4) {
-        max-width: 100%;
-      }
-    }
-  }
-}
-
-@media (max-width: 490px) {
-  .tableContainer {
-    table {
-      td:nth-child(3),
-      td:nth-child(4) {
-        text-align: center;
+      tbody {
+        td:last-child {
+          text-align: right;
+        }
       }
     }
   }
