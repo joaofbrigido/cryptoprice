@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -74,6 +74,12 @@ const PrecoMedio = () => {
             };
 
             setCryptoList([...cryptoList, newRow]);
+            if (typeof window !== 'undefined') {
+              localStorage.setItem(
+                'cryptoList',
+                JSON.stringify([...cryptoList, newRow])
+              );
+            }
           } else {
             toast.error(crypto.error);
           }
@@ -86,9 +92,12 @@ const PrecoMedio = () => {
     }
   }
 
-  function handleDeleteRow(slug: number) {
+  function handleDeleteCrypto(slug: number) {
     const updateList = cryptoList.filter((item) => item.slug !== slug);
     setCryptoList(updateList);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('cryptoList', JSON.stringify(updateList));
+    }
   }
 
   function CalculateAveragePrice() {
@@ -106,6 +115,17 @@ const PrecoMedio = () => {
       return '';
     }
   }
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const cryptoListLocalstorage = localStorage.getItem('cryptoList');
+
+      if (cryptoListLocalstorage) {
+        const cryptoListArr = JSON.parse(cryptoListLocalstorage);
+        setCryptoList(cryptoListArr);
+      }
+    }
+  }, []);
 
   return (
     <main className={`mainContainer ${S.main}`}>
@@ -192,18 +212,15 @@ const PrecoMedio = () => {
                     })}
                   </td>
                   <td className={S.deleteRow}>
-                    <span onClick={() => handleDeleteRow(crypto.slug)}>x</span>
+                    <span onClick={() => handleDeleteCrypto(crypto.slug)}>
+                      x
+                    </span>
                   </td>
                 </tr>
               ))}
           </tbody>
         </table>
       </div>
-
-      <button className={S.btn} style={{ marginTop: '32px' }}>
-        Calcular
-      </button>
-
       <p className={S.averagePrice}>Preço Médio: ${CalculateAveragePrice()}</p>
     </main>
   );
