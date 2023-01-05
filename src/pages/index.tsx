@@ -30,8 +30,8 @@ export default function Home({ cryptos }: cryptosProp) {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <>
-      <main className={`mainContainer ${S.main}`} data-theme={theme}>
+    <section className={S.themeWrapp} data-theme={theme}>
+      <main className={`mainContainer ${S.main}`}>
         <div className={S.searchWrapp}>
           <input
             type="text"
@@ -96,7 +96,7 @@ export default function Home({ cryptos }: cryptosProp) {
           </table>
         </div>
       </main>
-    </>
+    </section>
   );
 }
 

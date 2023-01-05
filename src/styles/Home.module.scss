@@ -1,10 +1,13 @@
-.main {
-  padding: 64px 20px;
+.themeWrapp {
   background-color: var(--bg);
 
   &[data-theme='light'] {
     background-color: #f2f3f9;
   }
+}
+
+.main {
+  padding: 64px 20px;
 }
 
 .searchWrapp {
