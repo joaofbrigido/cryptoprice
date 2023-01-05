@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
+import { ThemeContext } from '../../context/ThemeContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import S from './styles.module.scss';
@@ -37,6 +38,9 @@ const PrecoMedio = () => {
   const [cryptoList, setCryptoList] = useState<Crypto[]>([]);
   const [loading, setLoading] = useState(false);
   const [slug, setSlug] = useState(0);
+
+  // @ts-ignore: Unreachable code error
+  const { theme } = useContext(ThemeContext);
 
   async function handleAddCrypto() {
     if (date === '' || quantity <= 0 || coin === '-1' || coin === '') {
@@ -128,8 +132,8 @@ const PrecoMedio = () => {
   }, []);
 
   return (
-    <main className={`mainContainer ${S.main}`}>
-      <section className={S.inputsContainer}>
+    <main className={`mainContainer ${S.main}`} data-theme={theme}>
+      <section className={S.inputsContainer} data-theme={theme}>
         <div className={S.inputWrapp}>
           <label htmlFor="date">Dia da Compra</label>
           <input
@@ -138,6 +142,7 @@ const PrecoMedio = () => {
             className={S.input}
             value={date}
             onChange={({ target }) => setDate(target.value)}
+            data-theme={theme}
           />
         </div>
         <div className={S.inputWrapp}>
@@ -148,6 +153,7 @@ const PrecoMedio = () => {
             className={S.input}
             value={quantity}
             onChange={({ target }) => setQuantity(Number(target.value))}
+            data-theme={theme}
           />
         </div>
         <div className={S.inputWrapp}>
@@ -157,6 +163,7 @@ const PrecoMedio = () => {
             className={S.input}
             value={coin}
             onChange={({ target }) => Setcoin(target.value)}
+            data-theme={theme}
           >
             <option value="-1">Escolha uma Moeda</option>
             <option value="bitcoin">Bitcoin</option>
@@ -172,6 +179,7 @@ const PrecoMedio = () => {
       <div
         className="tableContainer"
         style={{ height: 'calc(60vh)', marginTop: '52px' }}
+        data-theme={theme}
       >
         <table>
           <thead>
@@ -221,7 +229,9 @@ const PrecoMedio = () => {
           </tbody>
         </table>
       </div>
-      <p className={S.averagePrice}>Preço Médio: ${CalculateAveragePrice()}</p>
+      <p className={S.averagePrice} data-theme={theme}>
+        Preço Médio: ${CalculateAveragePrice()}
+      </p>
     </main>
   );
 };

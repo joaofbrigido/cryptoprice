@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import Image from 'next/image';
+import { ThemeContext } from '../context/ThemeContext';
 import S from '../styles/Home.module.scss';
 
 type cryptosProp = {
@@ -25,15 +26,19 @@ export default function Home({ cryptos }: cryptosProp) {
     );
   }, [cryptos, search]);
 
+  // @ts-ignore: Unreachable code error
+  const { theme } = useContext(ThemeContext);
+
   return (
     <>
-      <main className={`mainContainer ${S.main}`}>
+      <main className={`mainContainer ${S.main}`} data-theme={theme}>
         <div className={S.searchWrapp}>
           <input
             type="text"
             placeholder="Buscar Criptomoeda..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            data-theme={theme}
           />
           <span>
             <Image
@@ -45,7 +50,7 @@ export default function Home({ cryptos }: cryptosProp) {
           </span>
         </div>
 
-        <div className="tableContainer">
+        <div className="tableContainer" data-theme={theme}>
           <table>
             <thead>
               <tr>

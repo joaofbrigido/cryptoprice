@@ -1,13 +1,20 @@
 .main {
-  margin-top: 64px;
-  margin-bottom: 64px;
-  padding: 0 20px;
+  padding: 64px 20px;
+  background-color: var(--bg);
+
+  &[data-theme='light'] {
+    background-color: #f2f3f9;
+  }
 }
 
 .inputsContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+
+  &[data-theme='light'] {
+    color: var(--black);
+  }
 }
 
 .inputWrapp {
@@ -50,6 +57,12 @@
   margin-top: 32px;
   font-size: var(--s20);
   font-weight: 500;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.16);
+
+  &[data-theme='light'] {
+    background-color: var(--bg-light);
+    color: var(--black);
+  }
 }
 
 .deleteRow {

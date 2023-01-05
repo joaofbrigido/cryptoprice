@@ -4,6 +4,7 @@ import { Footer } from '../components/Footer';
 import NextNprogress from 'nextjs-progressbar';
 import { ToastContainer } from 'react-toastify';
 import '../styles/globals.scss';
+import { ThemeProvider } from '../context/ThemeContext';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -26,9 +27,11 @@ export default function App({ Component, pageProps }: AppProps) {
         pauseOnHover
       />
 
-      <Header />
-      <Component {...pageProps} />
-      <Footer />
+      <ThemeProvider>
+        <Header />
+        <Component {...pageProps} />
+        <Footer />
+      </ThemeProvider>
     </>
   );
 }

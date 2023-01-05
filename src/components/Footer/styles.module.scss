@@ -4,14 +4,21 @@
   width: 100%;
   background-color: #131314;
   padding: 16px 20px;
-//   position: fixed;
-//   bottom: 0;
 
   a {
     color: var(--primary-100);
+    font-weight: bold;
 
     &:first-child {
       margin-right: 6px;
+    }
+  }
+
+  &[data-theme='light'] {
+    background-color: #767ebd;
+
+    a {
+      color: #4133c2;
     }
   }
 }

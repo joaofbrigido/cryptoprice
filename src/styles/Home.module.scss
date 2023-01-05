@@ -1,7 +1,10 @@
 .main {
-  margin-top: 64px;
-  margin-bottom: 64px;
-  padding: 0 20px;
+  padding: 64px 20px;
+  background-color: var(--bg);
+
+  &[data-theme='light'] {
+    background-color: #f2f3f9;
+  }
 }
 
 .searchWrapp {

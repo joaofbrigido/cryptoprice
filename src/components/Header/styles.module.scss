@@ -11,6 +11,10 @@
     flex-wrap: wrap;
     padding: 0 20px;
   }
+
+  &[data-theme='light'] {
+    background-color: #838BCB;
+  }
 }
 
 .logo {
@@ -43,11 +47,21 @@
       color: var(--primary-100);
     }
   }
+}
 
-  .changeMode {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.changeTheme {
+  background-color: var(--primary);
+  border: none;
+  padding: 6px 16px;
+  border-radius: 50px;
+
+  span {
+    display: none;
+    line-height: 1;
+
+    &.active {
+      display: block;
+    }
   }
 }
 
@@ -65,6 +79,10 @@
       background-color: rgba(0, 0, 0, 0.7);
       padding: 8px 12px;
       border-radius: 4px;
+
+      &:last-child {
+        background: none;
+      }
     }
   }
 }
