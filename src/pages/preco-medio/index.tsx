@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import Head from 'next/head';
 import Image from 'next/image';
 import { ThemeContext } from '../../context/ThemeContext';
 import { toast } from 'react-toastify';
@@ -132,113 +133,127 @@ const PrecoMedio = () => {
   }, []);
 
   return (
-    <section className={S.themeWrapp} data-theme={theme}>
-      <main className={`mainContainer ${S.main}`} data-theme={theme}>
-        <section className={S.inputsContainer} data-theme={theme}>
-          <div className={S.inputWrapp}>
-            <label htmlFor="date">Dia da Compra</label>
-            <input
-              type="date"
-              id="date"
-              className={S.input}
-              value={date}
-              onChange={({ target }) => setDate(target.value)}
-              data-theme={theme}
-            />
-          </div>
-          <div className={S.inputWrapp}>
-            <label htmlFor="qtd">Quantidade</label>
-            <input
-              type="number"
-              id="qtd"
-              className={S.input}
-              value={quantity}
-              onChange={({ target }) => setQuantity(Number(target.value))}
-              data-theme={theme}
-            />
-          </div>
-          <div className={S.inputWrapp}>
-            <label htmlFor="crypto">Criptomoeda</label>
-            <select
-              id="crypto"
-              className={S.input}
-              value={coin}
-              onChange={({ target }) => Setcoin(target.value)}
-              data-theme={theme}
+    <>
+      <Head>
+        <title>Cryptoprice | Preço Médio Criptomoedas</title>
+        <meta
+          name="description"
+          content="Calcule o preço médio de suas compras de criptomoedas"
+        />
+        <meta
+          name="keywords"
+          content="bitcoin, crypto, criptomoedas, cryptocoins, preço médio"
+        />
+      </Head>
+
+      <section className={S.themeWrapp} data-theme={theme}>
+        <main className={`mainContainer ${S.main}`} data-theme={theme}>
+          <section className={S.inputsContainer} data-theme={theme}>
+            <div className={S.inputWrapp}>
+              <label htmlFor="date">Dia da Compra</label>
+              <input
+                type="date"
+                id="date"
+                className={S.input}
+                value={date}
+                onChange={({ target }) => setDate(target.value)}
+                data-theme={theme}
+              />
+            </div>
+            <div className={S.inputWrapp}>
+              <label htmlFor="qtd">Quantidade</label>
+              <input
+                type="number"
+                id="qtd"
+                className={S.input}
+                value={quantity}
+                onChange={({ target }) => setQuantity(Number(target.value))}
+                data-theme={theme}
+              />
+            </div>
+            <div className={S.inputWrapp}>
+              <label htmlFor="crypto">Criptomoeda</label>
+              <select
+                id="crypto"
+                className={S.input}
+                value={coin}
+                onChange={({ target }) => Setcoin(target.value)}
+                data-theme={theme}
+              >
+                <option value="-1">Escolha uma Moeda</option>
+                <option value="bitcoin">Bitcoin</option>
+                <option value="ethereum">Ethereum</option>
+              </select>
+            </div>
+
+            <button
+              className={S.btn}
+              onClick={handleAddCrypto}
+              disabled={loading}
             >
-              <option value="-1">Escolha uma Moeda</option>
-              <option value="bitcoin">Bitcoin</option>
-              <option value="ethereum">Ethereum</option>
-            </select>
-          </div>
+              {loading ? 'Adicionando...' : 'Adicionar'}
+            </button>
+          </section>
 
-          <button
-            className={S.btn}
-            onClick={handleAddCrypto}
-            disabled={loading}
+          <div
+            className="tableContainer"
+            style={{ height: 'calc(60vh)', marginTop: '52px' }}
+            data-theme={theme}
           >
-            {loading ? 'Adicionando...' : 'Adicionar'}
-          </button>
-        </section>
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Moeda</th>
+                  <th>Quantidade</th>
+                  <th>Preço (USD)</th>
+                  <th>Data</th>
+                  <th></th>
+                </tr>
+              </thead>
 
-        <div
-          className="tableContainer"
-          style={{ height: 'calc(60vh)', marginTop: '52px' }}
-          data-theme={theme}
-        >
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Moeda</th>
-                <th>Quantidade</th>
-                <th>Preço (USD)</th>
-                <th>Data</th>
-                <th></th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {!!cryptoList.length &&
-                cryptoList.map((crypto, idx) => (
-                  <tr key={`${crypto.id}-${idx}`}>
-                    <td>{idx + 1}</td>
-                    <td className="coin">
-                      <span className="imgCrypto">
-                        <Image
-                          src={crypto.image}
-                          alt={crypto.name}
-                          width={36}
-                          height={36}
-                        />
-                      </span>
-                      <div className="coinText">
-                        <p>{crypto.name}</p>
-                        <span>{crypto.symbol}</span>
-                      </div>
-                    </td>
-                    <td>{crypto.quantity}</td>
-                    <td>${crypto.price.toFixed(2)}</td>
-                    <td>
-                      {new Date(crypto.date).toLocaleDateString('pt-BR', {
-                        timeZone: 'UTC',
-                      })}
-                    </td>
-                    <td className={S.deleteRow}>
-                      <span onClick={() => handleDeleteCrypto(crypto.slug)}>
-                        x
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </div>
-        <p className={S.averagePrice} data-theme={theme}>
-          Preço Médio: ${CalculateAveragePrice()}
-        </p>
-      </main>
-    </section>
+              <tbody>
+                {!!cryptoList.length &&
+                  cryptoList.map((crypto, idx) => (
+                    <tr key={`${crypto.id}-${idx}`}>
+                      <td>{idx + 1}</td>
+                      <td className="coin">
+                        <span className="imgCrypto">
+                          <Image
+                            src={crypto.image}
+                            alt={crypto.name}
+                            width={36}
+                            height={36}
+                          />
+                        </span>
+                        <div className="coinText">
+                          <p>{crypto.name}</p>
+                          <span>{crypto.symbol}</span>
+                        </div>
+                      </td>
+                      <td>{crypto.quantity}</td>
+                      <td>${crypto.price.toFixed(2)}</td>
+                      <td>
+                        {new Date(crypto.date).toLocaleDateString('pt-BR', {
+                          timeZone: 'UTC',
+                        })}
+                      </td>
+                      <td className={S.deleteRow}>
+                        <span onClick={() => handleDeleteCrypto(crypto.slug)}>
+                          x
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+          <p className={S.averagePrice} data-theme={theme}>
+            Preço Médio: ${CalculateAveragePrice()}
+          </p>
+        </main>
+      </section>
+    </>
   );
 };
 
