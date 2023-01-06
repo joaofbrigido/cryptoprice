@@ -1,0 +1,32 @@
+{
+    "theme_color": "#6756f5",
+    "background_color": "#1b1e32",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "name": "Cryptoprice",
+    "short_name": "Cryptoprice",
+    "description": "Cota\u00e7\u00e3o em tempo real das principais criptomoedas e c\u00e1lculo do pre\u00e7o m\u00e9dio de compras",
+    "icons": [
+        {
+            "src": "/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

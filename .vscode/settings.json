@@ -8,11 +8,11 @@
     "public": false,
     ".next": true,
     ".eslintrc.json": true,
-    "README.md": false,
+    "README.md": true,
     "yarn.lock": true,
     "tsconfig.json": true,
     "next-env.d.ts": true,
-    "next.config.js": true,
+    "next.config.js": false,
     ".prettierrc.json": true
   }
 }
