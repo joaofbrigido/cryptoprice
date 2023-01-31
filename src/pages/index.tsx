@@ -125,6 +125,6 @@ export async function getStaticProps() {
     props: {
       cryptos,
     },
-    revalidate: 60 * 30, // 30 min
+    revalidate: 60 * 5, // 5 min
   };
 }
