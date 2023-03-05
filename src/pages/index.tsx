@@ -68,7 +68,6 @@ export default function Home({ cryptos }: cryptosProp) {
             <table>
               <thead>
                 <tr>
-                  <th>#</th>
                   <th>Moeda</th>
                   <th>Preço (USD)</th>
                   <th>Variação (24h)</th>
@@ -77,9 +76,8 @@ export default function Home({ cryptos }: cryptosProp) {
 
               <tbody>
                 {!!cryptosFiltered &&
-                  cryptosFiltered.map((crypto, idx) => (
+                  cryptosFiltered.map((crypto) => (
                     <tr key={crypto.id}>
-                      <td>{idx + 1}</td>
                       <td className="coin">
                         <span className="imgCrypto">
                           <Image
