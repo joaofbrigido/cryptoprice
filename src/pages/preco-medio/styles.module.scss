@@ -12,7 +12,7 @@
 
 .inputsContainer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 
   &[data-theme='light'] {
@@ -59,7 +59,6 @@
   border-radius: 32px;
   margin-top: 32px;
   font-size: var(--s20);
-  font-weight: 500;
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.16);
 
   &[data-theme='light'] {
@@ -82,13 +81,13 @@
   }
 }
 
-@media (max-width: 630px) {
+@media (max-width: 900px) {
   .inputsContainer {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 486px) {
   .inputsContainer {
     grid-template-columns: 1fr;
   }

@@ -35,10 +35,13 @@ type Crypto = {
 const PrecoMedio = () => {
   const [date, setDate] = useState('');
   const [quantity, setQuantity] = useState(0);
+  const [quotation, setQuotation] = useState(0);
   const [coin, Setcoin] = useState('');
   const [cryptoList, setCryptoList] = useState<Crypto[]>([]);
   const [loading, setLoading] = useState(false);
   const [slug, setSlug] = useState(0);
+  const [totalCrypto, setTotalCrypto] = useState(0);
+  const [totalDolar, setTotalDolar] = useState(0);
 
   // @ts-ignore: Unreachable code error
   const { theme } = useContext(ThemeContext);
@@ -65,6 +68,8 @@ const PrecoMedio = () => {
           );
           const crypto: CryptoResponse = await response.json();
           setSlug(slug + 1);
+          const price =
+            quotation <= 0 ? crypto.market_data.current_price.usd : quotation;
 
           if (response.ok) {
             const newRow = {
@@ -74,7 +79,7 @@ const PrecoMedio = () => {
               symbol: crypto.symbol,
               image: crypto.image.small,
               quantity: quantity,
-              price: crypto.market_data.current_price.usd,
+              price: price,
               date: date,
             };
 
@@ -121,6 +126,12 @@ const PrecoMedio = () => {
     }
   }
 
+  function handleTotalCrypto(cryptoListArr: Crypto[]) {
+    const quantity = cryptoListArr.map((crypto) => crypto.quantity);
+    const cryptoTotal = quantity.reduce((qty, acc) => qty + acc, 0);
+    setTotalCrypto(cryptoTotal);
+  }
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const cryptoListLocalstorage = localStorage.getItem('cryptoList');
@@ -128,6 +139,7 @@ const PrecoMedio = () => {
       if (cryptoListLocalstorage) {
         const cryptoListArr = JSON.parse(cryptoListLocalstorage);
         setCryptoList(cryptoListArr);
+        handleTotalCrypto(cryptoListArr);
       }
     }
   }, []);
@@ -168,6 +180,17 @@ const PrecoMedio = () => {
                 className={S.input}
                 value={quantity}
                 onChange={({ target }) => setQuantity(Number(target.value))}
+                data-theme={theme}
+              />
+            </div>
+            <div className={S.inputWrapp}>
+              <label htmlFor="quotation">Cotação</label>
+              <input
+                type="number"
+                id="quotation"
+                className={S.input}
+                value={quotation}
+                onChange={({ target }) => setQuotation(Number(target.value))}
                 data-theme={theme}
               />
             </div>
@@ -249,7 +272,14 @@ const PrecoMedio = () => {
             </table>
           </div>
           <p className={S.averagePrice} data-theme={theme}>
-            Preço Médio: ${CalculateAveragePrice()}
+            <strong>Preço Médio:</strong> ${CalculateAveragePrice()}
+          </p>
+          <p
+            className={S.averagePrice}
+            data-theme={theme}
+            style={{ marginTop: '16px' }}
+          >
+            <strong>Total Cripto:</strong> ${totalCrypto}
           </p>
         </main>
       </section>
