@@ -279,7 +279,7 @@ const PrecoMedio = () => {
             data-theme={theme}
             style={{ marginTop: '16px' }}
           >
-            <strong>Total Cripto:</strong> ${totalCrypto}
+            <strong>Total Cripto:</strong> ${totalCrypto.toFixed(6)}
           </p>
         </main>
       </section>
