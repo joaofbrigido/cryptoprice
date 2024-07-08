@@ -10,7 +10,10 @@ const withPWA = require('next-pwa')({
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['assets.coingecko.com/coins/images', 'assets.coingecko.com'],
+    domains: [
+      'coin-images.coingecko.com/coins/images',
+      'coin-images.coingecko.com',
+    ],
   },
 };
 
